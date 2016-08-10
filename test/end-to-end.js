@@ -29,8 +29,16 @@ var MYSQL_DATABASE = 'loopback_workspace_test';
 var MYSQL_USER = 'lbws';
 var MYSQL_PASSWORD = 'hbx42rec';
 
+before(function cleanTestDir(cb) {
+  fs.remove(PKG_CACHE, function(err) {
+    if (err) return cb(err);
+    cb();
+  });
+});
+
 describe('end-to-end', function() {
-  this.timeout(10000);
+  this.timeout(25000);
+  beforeEach(resetWorkspace);
 
   describe('empty-server template', function() {
     var app;
@@ -1095,7 +1103,7 @@ function execNpm(args, options, cb) {
 }
 
 function installSandboxPackages(cb) {
-  this.timeout(300 * 1000);
+  this.timeout(500 * 1000);
   install(SANDBOX, PKG_CACHE, ['dependencies', 'devDependencies'], cb);
 }
 
