@@ -38,7 +38,6 @@ before(function cleanTestDir(cb) {
 
 describe('end-to-end', function() {
   this.timeout(25000);
-  beforeEach(resetWorkspace);
 
   describe('empty-server template', function() {
     var app;
@@ -214,6 +213,7 @@ describe('end-to-end', function() {
 
   describe('empty-server template without explorer', function() {
     before(resetWorkspace);
+    before(givenEmptySandbox);
     before(function createWorkspace(done) {
       var options = {
         'loopback-component-explorer': false,
@@ -860,7 +860,7 @@ describe('end-to-end', function() {
 
     // The tests are forking new processes and setting up HTTP servers,
     // they requires more than 2 seconds to finish
-    this.timeout(10000);
+    this.timeout(15000);
 
     before(resetWorkspace);
     before(givenBasicWorkspace);
