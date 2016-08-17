@@ -23,6 +23,5 @@
       "debug": true,
       "log": true
     }
-  },
-  "legacyExplorer": false
+  }
 }
